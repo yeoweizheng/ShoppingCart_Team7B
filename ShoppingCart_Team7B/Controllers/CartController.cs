@@ -16,7 +16,7 @@ namespace ShoppingCart_Team7B.Controllers
         {
             var db = new ShoppingCartDbContext();
             User user = db.User.Where(x => x.Username == "admin").FirstOrDefault();
-            ViewData["cart"] = user.Cart;
+            ViewData["user"] = user;
             return View();
         }
     }

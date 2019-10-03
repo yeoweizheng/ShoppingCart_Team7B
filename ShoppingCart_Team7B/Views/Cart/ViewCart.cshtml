@@ -1,39 +1,66 @@
 ﻿@using ShoppingCart_Team7B.Models;
 @{
     ViewBag.Title = "View Cart";
+    User user = (User)ViewData["user"];
+    Cart cart = user.Cart;
 }
-<div class="panel panel-default">
-    <div class="panel-heading text-center">
-        <h3>View Cart</h3>
-    </div>
-    <div class="panel-body">
-        @{ 
-            Cart cart = (Cart)ViewData["cart"];
-        }
-        @foreach(var cartGroup in cart.CartGroups)
-        {
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-5" style="border: 1px solid #ccc; border-radius: 5px;">
-                    <div class="row">
-                        <div class="col-xs-12 text-center"><label>@cartGroup.Product.ProductName</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12"><p>@cartGroup.Product.Description</p></div>
-                    </div>
-                </div>
-                <div class="col-xs-5">
-                    <div class="row">
-                        <div class="col-xs-6"><label>Price:</label></div>
-                        <div class="col-xs-6">@cartGroup.Product.Price</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6"><label>Quantity:</label></div>
-                        <div class="col-xs-6">@cartGroup.Quantity</div>
-                    </div>
-                </div>
-                <div class="col-xs-2"></div>
+<div class="container">
+    <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">View Cart</a>
             </div>
-        }
+            <ul class="nav navbar-nav">
+                <li><a href="#">Continue Shopping</a></li>
+                <li><a href="#">Checkout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout (@user.Username)</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="panel panel-default">
+    <!--<div class="panel-heading text-center">
+        <h3>View Cart</h3>
+    </div>-->
+    <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <div class="col-xs-6">
+                    @{ double totalSum = 0; }
+                    @foreach (var cartGroup in cart.CartGroups)
+                    {
+                        totalSum += cartGroup.Product.Price * cartGroup.Quantity;
+                        <div class="row">
+                            <div class="col-xs-6" style="border: 1px solid #ccc; border-radius: 5px;">
+                                <div class="row">
+                                    <div class="col-xs-12 text-center"><img width="80%" src="~/Images/productLogo.jpg" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center"><label>@cartGroup.Product.ProductName</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12"><p>@cartGroup.Product.Description</p></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" style="padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-xs-6"><label>Price:</label></div>
+                                    <div class="col-xs-6">$@cartGroup.Product.Price.ToString("0.00")</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6"><label>Quantity:</label></div>
+                                    <div class="col-xs-6">@cartGroup.Quantity</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-xs-3">
+                    <h4 style="font-weight: bold;">Total: $@totalSum.ToString("0.00")</h4>
+                </div>
+            </div>
     </div>
+</div>
 </div>
