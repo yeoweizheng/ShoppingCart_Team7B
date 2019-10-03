@@ -9,7 +9,7 @@ namespace ShoppingCart_Team7B.Models
     {
         public int SessionId { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         
     }
 }

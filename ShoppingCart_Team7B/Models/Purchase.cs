@@ -14,7 +14,7 @@ namespace ShoppingCart_Team7B.Models
         public int PurchaseId { get; set; }
         public float PurchaseDate { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<PurchaseGroup> PurchaseGroups { get; set; }
     }
 }

@@ -1,0 +1,39 @@
+﻿@using ShoppingCart_Team7B.Models;
+@{
+    ViewBag.Title = "View Cart";
+}
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <h3>View Cart</h3>
+    </div>
+    <div class="panel-body">
+        @{ 
+            Cart cart = (Cart)ViewData["cart"];
+        }
+        @foreach(var cartGroup in cart.CartGroups)
+        {
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-5" style="border: 1px solid #ccc; border-radius: 5px;">
+                    <div class="row">
+                        <div class="col-xs-12 text-center"><label>@cartGroup.Product.ProductName</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><p>@cartGroup.Product.Description</p></div>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="row">
+                        <div class="col-xs-6"><label>Price:</label></div>
+                        <div class="col-xs-6">@cartGroup.Product.Price</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6"><label>Quantity:</label></div>
+                        <div class="col-xs-6">@cartGroup.Quantity</div>
+                    </div>
+                </div>
+                <div class="col-xs-2"></div>
+            </div>
+        }
+    </div>
+</div>
