@@ -8,5 +8,7 @@ namespace ShoppingCart_Team7B.Models
     public class Cart
     {
         public string CartId { get; set; }
+
+        public virtual ICollection <CartGroup> CartGroupId { get; set; }
     }
 }

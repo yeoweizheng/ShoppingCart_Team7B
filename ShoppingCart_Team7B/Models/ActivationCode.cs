@@ -8,5 +8,6 @@ namespace ShoppingCart_Team7B.Models
     public class ActivationCode
     {
         public string ActivationCodeId { get; set; }
+        public float ActivationNumber { get; set; }
     }
 }
