@@ -7,13 +7,17 @@ namespace ShoppingCart_Team7B.Models
 {
     public class PurchaseGroup
     {
-        public string PurchaseGroupId { get; set; }
+        public PurchaseGroup()
+        {
+            this.ActivationCodes = new List<ActivationCode>();
+        }
+        public int PurchaseGroupId { get; set; }
         public int Quantity { get; set; }
-
         public int ProductId { get; set; }
         public Product Product { get; set; }
-
-        public virtual ICollection<ActivationCode> ActivationCodeId { get; set; }
+        public int PurchaseId { get; set; }
+        public Purchase Purchase { get; set; }
+        public virtual ICollection<ActivationCode> ActivationCodes { get; set; }
 
     }
 }

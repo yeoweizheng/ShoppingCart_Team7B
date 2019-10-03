@@ -7,7 +7,9 @@ namespace ShoppingCart_Team7B.Models
 {
     public class ActivationCode
     {
-        public string ActivationCodeId { get; set; }
+        public int ActivationCodeId { get; set; }
         public float ActivationNumber { get; set; }
+        public string PurchaseGroupId { get; set; }
+        public PurchaseGroup PurchaseGroup { get; set; }
     }
 }
