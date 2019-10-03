@@ -135,11 +135,8 @@
     </Compile>
     <Compile Include="Models\ActivationCode.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\CartGroup.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
-    <Compile Include="Models\PurchaseGroup.cs" />
-    <Compile Include="Models\Session.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

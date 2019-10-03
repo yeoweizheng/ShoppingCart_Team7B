@@ -8,7 +8,6 @@ namespace ShoppingCart_Team7B.Models
     public class Purchase
     {
         public string PurchaseId { get; set; }
-        public float PurchaseDate { get; set; }
-        public virtual ICollection<PurchaseGroup> PurchaseGroupId { get; set; }
+        public User User { get; set; }
     }
 }
