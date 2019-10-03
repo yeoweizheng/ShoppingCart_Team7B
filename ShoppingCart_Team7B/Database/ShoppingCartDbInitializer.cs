@@ -7,7 +7,7 @@ using ShoppingCart_Team7B.Models;
 
 namespace ShoppingCart_Team7B.Database
 {
-    public class ShoppingCartDbInitializer:DropCreateDatabaseAlways<ShoppingCartDbContext>
+    public class ShoppingCartDbInitializer:DropCreateDatabaseIfModelChanges<ShoppingCartDbContext>
     {
         protected override void Seed(ShoppingCartDbContext context)
         {
