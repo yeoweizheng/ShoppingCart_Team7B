@@ -6,72 +6,65 @@
     ViewBag.Title = "ListProducts";
 }
 
-<div class="panel panel-default">
-    <div class="panel-heading text-center">
-        <h3>Products</h3>
-    </div>
-</div>
+ <div class="container">
+     <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+         <div class="container-fluid">
+             <div class="navbar-header">
+                 <a class="navbar-brand">View Products</a>
+             </div>
+             <ul class="nav navbar-nav">
+                 <li><a href="#">My Purchases</a></li>
+             </ul>
+             <ul class="nav navbar-nav navbar-right">
+                 <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                 <li><a href="~/User/Logout"><span class="glyphicon glyphicon-log-out"></span>Logout </a></li>
+             </ul>
+         </div>
+     </nav>
 
-<div class="panel-body">
 
-    @{ List<Product> ListProduct = (List<Product>)ViewData["productList"];
-            
+        <div class="panel-body">
+
+            @{ List<Product> ListProduct = (List<Product>)ViewData["productList"];
+
 
             foreach (var details in ListProduct)
             {
 
-        <div class="row">
-                <div class="col-xs-3 col-md-3">
+                <div class="row">
+                    <div class="col-xs-3 col-md-3">
 
-                    <div class="row">
-                        <div class="thumbnail">
-                            @*thumbnail pic*@
-                            <img src="~/Content/apple.jpg" width="100" height="100" />
+                        <div class="row">
+                            <div class="thumbnail">
+                                @*thumbnail pic*@
+                                <img src="~/Content/apple.jpg" width="100" height="100" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="caption">
-                            @*for caption*@
-                            <h3>@details.ProductName</h3>
+                        <div class="row">
+                            <div class="caption">
+                                @*for caption*@
+                                <h3>@details.ProductName</h3>
 
-                            @*<h3>Apple</h3>*@
-                            @*<p>Crunchy apples from the Westside country gardens</p>*@
+                                @*<h3>Apple</h3>*@
+                                @*<p>Crunchy apples from the Westside country gardens</p>*@
 
-                            <p>@details.Description</p>
-                            <p>Price: $@details.Price</p>
-                            <p>Product Code: @details.ProductId</p>
-                            <button class="btn btn-success">Add to Cart</button>
-                            <button class="btn btn-success"><span class="glyphicon-eye-close"></span>Enlarged View</button>
-                        </div>
+                                <p>@details.Description</p>
+                                <p>Price: $@details.Price</p>
+                                <p>Product Code: @details.ProductId</p>
+                                <button class="btn btn-success">Add to Cart</button>
+                                <button class="btn btn-success"><span class="glyphicon-eye-close"></span>Enlarged View</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             }
-        }
+            }
 
-        <!----
-
-           <div class="col-sm-5 col-md-3">
-
-                <div class="thumbnail">
-                    @*thumbnail pic*@
-                    <img src="~/Content/orange.jpg" width="100" height="100" />
-
-                </div>
-
-                <div class="caption">
-                    @*for caption*@
-                    <h3>Oranges</h3>
-                    <p>Fresh juicy oranges best suited for juice</p>
-                    <button class="btn btn-success">Add to Cart</button>
-                    <button class="btn btn-success"><span class="glyphicon-eye-close"></span>Enlarged View</button>
-                </div>
-            </div> 
-            --->
-            
-        }
+         
+            }
         </div>
+     </div>
 
 
 
