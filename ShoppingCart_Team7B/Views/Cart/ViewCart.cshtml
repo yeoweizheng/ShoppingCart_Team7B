@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-xs-6"><label>Quantity:</label></div>
                                     <div class="col-xs-6">
-                                        <input type="number" step="1" value="@cartGroup.Quantity" min="0" style="width: 4em;" />
+                                        <input type="number" step="1" id="cartGroup_@cartGroup.CartGroupId" value="@cartGroup.Quantity" min="0" style="width: 4em;" />
                                     </div>
                                 </div>
                             </div>
@@ -63,3 +63,21 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        @foreach(var cartGroup in cart.CartGroups)
+        {
+            <text>
+                $("#cartGroup_" + @cartGroup.CartGroupId).on("change", function () {
+                    $.ajax({
+                        method: "POST",
+                        url: "UpdateCartGroup",
+                        data: { cartGroupId: @cartGroup.CartGroupId, quantity: $(this).val() },
+                        success: function () {
+                        }
+                    });
+                });
+            </text>
+        }
+    });
+</script>
