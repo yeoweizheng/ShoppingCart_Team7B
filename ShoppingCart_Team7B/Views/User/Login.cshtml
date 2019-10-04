@@ -1,0 +1,58 @@
+﻿@using ShoppingCart_Team7B.Models;
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    body{
+        background-image:url(../../Content/2.jpg)
+    }
+    #login-div{
+        position:absolute;
+        left:50%;
+        top:50%;
+        border:1px solid #ccc;
+        padding:10px 10px;
+    }
+    .field-validation-error{
+        color:red;
+    }
+</style>
+<form action="Login" method="post">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+        <div class="panel panel-info">
+            <div class="panel-heading text-center">
+                <h3>User Login</h3>
+            </div>
+            <div class="panel-body">
+                @{
+                    string name = (string)ViewData["username"];
+                    string password = (string)ViewData["password"];
+                }
+
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-3">Username:</div>
+                    <div class="col-xs-5"><input type="text" id="username" name="username" /></div>
+                    <div class="col-xs-2"></div>
+                </div>
+                <p></p>
+
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-3">Password:</div>
+                    <div class="col-xs-5"><input type="password" id="password" name="password" /></div>
+                    <div class="col-xs-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10"></div>
+                    <div class="col-xs-2">
+                        <button type="submit" class="btn btn-primary" value="Login">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2"></div>
+</form>
