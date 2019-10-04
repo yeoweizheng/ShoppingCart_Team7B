@@ -11,6 +11,16 @@ namespace ShoppingCart_Team7B.Models
         {
             this.ActivationCodes = new List<ActivationCode>();
         }
+        public PurchaseGroup(int quantity, Product product)
+        {
+            this.ActivationCodes = new List<ActivationCode>();
+            this.Quantity = quantity;
+            this.Product = product;
+            for(int i = 0; i < quantity; i++)
+            {
+                this.ActivationCodes.Add(new ActivationCode());
+            }
+        }
         public int PurchaseGroupId { get; set; }
         public int Quantity { get; set; }
         public int ProductId { get; set; }

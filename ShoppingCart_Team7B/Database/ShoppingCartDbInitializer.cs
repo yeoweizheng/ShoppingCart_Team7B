@@ -19,11 +19,15 @@ namespace ShoppingCart_Team7B.Database
             user1.Cart = new Cart();
             user1.Cart.CartGroups.Add(new CartGroup(2, product1));
 
-            context.User.Add(user1);
+            Purchase purchase = new Purchase();
+            purchase.PurchaseGroups.Add(new PurchaseGroup(2, product2));
+            user1.Purchases.Add(purchase);
+
             context.Product.Add(product1);
             context.Product.Add(product2);
             context.Product.Add(product3);
             context.Product.Add(product4);
+            context.User.Add(user1);
             base.Seed(context);
         }
     }
