@@ -25,10 +25,8 @@
             <div class="row">
                 <div class="col-xs-3"></div>
                 <div class="col-xs-6">
-                    @{ double totalSum = 0; }
                     @foreach (var cartGroup in cart.CartGroups)
                     {
-                        totalSum += cartGroup.Product.Price * cartGroup.Quantity;
                         <div class="row">
                             <div class="col-xs-6" style="border: 1px solid #ccc; border-radius: 5px;">
                                 <div class="row">
@@ -57,7 +55,7 @@
                     }
                 </div>
                 <div class="col-xs-3">
-                    <h4 style="font-weight: bold;">Total: <span id="totalSum"></span></h4>
+                    <h4 style="font-weight: bold;">Total: <span id="cartTotal"></span></h4>
                 </div>
             </div>
         </div>
@@ -88,7 +86,7 @@
             url: "GetCartTotal",
             data: { cartId: @cart.CartId },
             success: function (data) {
-                $("#totalSum").html(data);
+                $("#cartTotal").html(data);
             }
         });
     }
