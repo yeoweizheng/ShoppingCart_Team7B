@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShoppingCart_Team7B.Models;
+using ShoppingCart_Team7B.Database;
+using System.Data.Entity;
 
 namespace ShoppingCart_Team7B.Controllers
 {
@@ -11,6 +14,10 @@ namespace ShoppingCart_Team7B.Controllers
         // GET: Purchases
         public ActionResult ViewPurchases()
         {
+            var db = new ShoppingCartDbContext();
+            User user = db.User.Where(x => x.Username == "admin").FirstOrDefault();
+            ViewData["user"] = user;
+            ViewData["purchase"] = user.Purchases;
             return View();
         }
     }
