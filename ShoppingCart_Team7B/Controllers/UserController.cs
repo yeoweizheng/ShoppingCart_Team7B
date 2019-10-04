@@ -28,8 +28,6 @@ namespace ShoppingCart_Team7B.Controllers
                     Response.Cookies["ShoppingCart_Team7B"]["sessionId"] = session.SessionId;
                     db.Session.Add(session);
                     db.SaveChanges();
-                    ViewData["username"] = user.Username;
-                    ViewData["password"] = user.Password;
                     return RedirectToAction("ListProducts", "Product");
                 }
                 else
@@ -38,6 +36,30 @@ namespace ShoppingCart_Team7B.Controllers
                 }
             }
             return View();
+        }
+        public ActionResult Logout()
+        {
+            HttpCookie cookie = Request.Cookies["ShoppingCart_Team7B"];
+            if (GetUserFromCookie(cookie) != null)
+            {
+                var db = new ShoppingCartDbContext();
+                string sessionId = cookie["sessionId"].ToString();
+                Session session = db.Session.Where(x => x.SessionId == sessionId).FirstOrDefault();
+                db.Session.Remove(session);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Login");
+        }
+        [NonAction]
+        public static User GetUserFromCookie(HttpCookie cookie)
+        {
+            var db = new ShoppingCartDbContext();
+            if (cookie == null) return null;
+            if (cookie["sessionId"] == null) return null;
+            string sessionId = cookie["sessionId"].ToString();
+            Session session = db.Session.Where(x => x.SessionId == sessionId).FirstOrDefault();
+            if (session == null) return null;
+            return session.User;
         }
     }
 }

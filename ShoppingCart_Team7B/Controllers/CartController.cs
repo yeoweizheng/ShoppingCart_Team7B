@@ -14,14 +14,17 @@ namespace ShoppingCart_Team7B.Controllers
         // GET: Cart
         public ActionResult ViewCart()
         {
-            var db = new ShoppingCartDbContext();
-            User user = db.User.Where(x => x.Username == "admin").FirstOrDefault();
+            User user = UserController.GetUserFromCookie(Request.Cookies["ShoppingCart_Team7B"]);
+            if (user == null) return RedirectToAction("Login", "User");
             ViewData["user"] = user;
             return View();
         }
         public ActionResult UpdateCartGroup(int cartGroupId, int quantity)
         {
-            System.Diagnostics.Debug.WriteLine(cartGroupId);
+            var db = new ShoppingCartDbContext();
+            CartGroup cartGroup = db.CartGroup.Where(x => x.CartGroupId == cartGroupId).FirstOrDefault();
+            cartGroup.Quantity = quantity;
+            db.SaveChanges();
             return new HttpStatusCodeResult(200);
         }
         public ActionResult GetCartTotal(int cartId)
@@ -33,6 +36,7 @@ namespace ShoppingCart_Team7B.Controllers
             {
                 totalSum += cartGroup.Product.Price * cartGroup.Quantity;
             }
+            return Content(totalSum.ToString("0.00"));
         }
     }
 }
