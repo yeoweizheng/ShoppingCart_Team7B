@@ -14,8 +14,6 @@ namespace ShoppingCart_Team7B.Controllers
 {
     public class ProductController : Controller
     {
-
-
         public ActionResult ListProducts()
         {
             User user = UserController.GetUserFromCookie(Request.Cookies["ShoppingCart_Team7B"]);

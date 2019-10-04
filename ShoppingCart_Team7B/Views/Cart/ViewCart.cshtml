@@ -11,11 +11,11 @@
                 <a class="navbar-brand">View Cart</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#">Continue Shopping</a></li>
+                <li><a href="~/Product/ListProducts">Continue Shopping</a></li>
                 <li><a href="#">Checkout</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart (<span id="cartQuantity"></span>)</a></li>
                 <li><a href="~/User/Logout"><span class="glyphicon glyphicon-log-out"></span>Logout (@user.Username)</a></li>
             </ul>
         </div>
@@ -40,14 +40,23 @@
                                 </div>
                             </div>
                             <div class="col-xs-6" style="padding-top: 10px;">
-                                <div class="row">
-                                    <div class="col-xs-6"><label>Price:</label></div>
-                                    <div class="col-xs-6">$@cartGroup.Product.Price.ToString("0.00")</div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6"><label>Price:</label></div>
+                                        <div class="col-xs-6">$@cartGroup.Product.Price.ToString("0.00")</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6"><label>Quantity:</label></div>
+                                        <div class="col-xs-6">
+                                            <input type="number" step="1" id="cartGroup_@cartGroup.CartGroupId" value="@cartGroup.Quantity" min="1" style="width: 4em;" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-6"><label>Quantity:</label></div>
-                                    <div class="col-xs-6">
-                                        <input type="number" step="1" id="cartGroup_@cartGroup.CartGroupId" value="@cartGroup.Quantity" min="0" style="width: 4em;" />
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-danger" onclick="removeFromCart(@cartGroup.CartGroupId);">Remove from cart</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +72,8 @@
 </div>
 <script>
     $(document).ready(function () {
-        getCartTotal();
+        updateCartTotal();
+        updateCartQuantity(@user.Cart.CartId);
         @foreach(var cartGroup in cart.CartGroups)
         {
             <text>
@@ -73,20 +83,34 @@
                         url: "UpdateCartGroup",
                         data: { cartGroupId: @cartGroup.CartGroupId, quantity: $(this).val() },
                         success: function () {
-                            getCartTotal();
+                            updateCartTotal();
+                            updateCartQuantity(@user.Cart.CartId);
                         }
                     });
                 });
             </text>
         }
+        $("[type='number']").keydown(function (e) {
+            e.preventDefault();
+        });
     });
-    function getCartTotal() {
+    function updateCartTotal() {
         $.ajax({
             method: "GET",
             url: "GetCartTotal",
             data: { cartId: @cart.CartId },
             success: function (data) {
                 $("#cartTotal").html(data);
+            }
+        });
+    }
+    function removeFromCart(cartGroupId) {
+        $.ajax({
+            method: "POST",
+            url: "RemoveFromCart",
+            data: { cartGroupId: cartGroupId },
+            success: function (data) {
+                location.reload();
             }
         });
     }

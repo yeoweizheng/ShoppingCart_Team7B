@@ -38,5 +38,24 @@ namespace ShoppingCart_Team7B.Controllers
             }
             return Content(totalSum.ToString("0.00"));
         }
+        public ActionResult GetCartQuantity(int cartId)
+        {
+            var db = new ShoppingCartDbContext();
+            Cart cart = db.Cart.Where(x => x.CartId == cartId).FirstOrDefault();
+            int totalQuantity = 0;
+            foreach(var cartGroup in cart.CartGroups)
+            {
+                totalQuantity += cartGroup.Quantity;
+            }
+            return Content(totalQuantity.ToString());
+        }
+        public ActionResult RemoveFromCart(int cartGroupId)
+        {
+            var db = new ShoppingCartDbContext();
+            CartGroup cartGroup = db.CartGroup.Where(x => x.CartGroupId == cartGroupId).FirstOrDefault();
+            db.CartGroup.Remove(cartGroup);
+            db.SaveChanges();
+            return new HttpStatusCodeResult(200);
+        }
     }
 }

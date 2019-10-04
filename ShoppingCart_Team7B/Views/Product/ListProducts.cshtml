@@ -17,7 +17,7 @@
                 <li><a href="#">My Purchases</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="~/Cart/ViewCart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart (<span id="cartQuantity"></span>)</a></li>
                 <li><a href="~/User/Logout"><span class="glyphicon glyphicon-log-out"></span>Logout (@user.Username)</a></li>
             </ul>
         </div>
@@ -66,6 +66,9 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        updateCartQuantity(@user.Cart.CartId);
+    });
     function addToCart(productId)
     {
         $.ajax({
@@ -73,10 +76,9 @@
             url: "AddToCart",
             data: { userId: @user.UserId, productId: productId },
             success: function () {
-
+                updateCartQuantity(@user.Cart.CartId);
             }
         });
     }
-
 </script >
 
