@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "ListProducts";
     List<Product> productList = (List<Product>)ViewData["productList"];
+    User user = (User)ViewData["user"];
 }
 
 <div class="container">
@@ -17,7 +18,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                <li><a href="~/User/Logout"><span class="glyphicon glyphicon-log-out"></span>Logout </a></li>
+                <li><a href="~/User/Logout"><span class="glyphicon glyphicon-log-out"></span>Logout (@user.Username)</a></li>
             </ul>
         </div>
     </nav>
@@ -64,4 +65,18 @@
     </div>
 </div>
 
+<script>
+    function addToCart(productId)
+    {
+        $.ajax({
+            method: "POST",
+            url: "AddToCart",
+            data: { userId: @user.UserId, productId: productId },
+            success: function () {
+
+            }
+        });
+    }
+
+</script >
 
