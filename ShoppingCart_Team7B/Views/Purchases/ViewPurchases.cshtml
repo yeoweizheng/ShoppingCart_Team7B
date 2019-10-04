@@ -1,6 +1,10 @@
-﻿
+﻿@using ShoppingCart_Team7B.Models;
 @{
     ViewBag.Title = "ViewPurchases";
+    User user = (User)ViewData["user"];
+    //Cart cart = user.Cart;
+    //Purchase purchase = (Purchase)ViewData["purchase"];
+
 }
 
 <div class="container">
@@ -13,12 +17,69 @@
                 <li><a href="#">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout </a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout(@user.Username) </a></li>
             </ul>
         </div>
     </nav>
+
     <div class="panel panel-default">
         <div class="panel-body">
+            @*@foreach (var purchaseGroup in purchase.PurchaseGroups)
+            {*@
+                <div class="row">
+                    <div class="col-xs-1"></div>
+
+                    <div class="col-xs-5">
+                        <div class="goods">
+                            <div class="row" style="text-align:center">
+                                <img src="~/Images/orange.jpg" alt="Orange" style="width:90%">
+                            </div>
+                            <div class="alert alert-success">
+                                <div class="row">
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-8">
+                                        <h4 style="text-align: center"><strong>Oranges</strong></h4>
+                                    </div>
+                                    <div class="col-xs-2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>Fresh juicy oranges best suited for juice</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-8">
+                                        <button type="submit" class="btn btn-info btn-block" value="Download">Download</button>
+                                    </div>
+                                    <div class="col-xs-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-5" style="padding-top:50px;">
+                        <div class="row">
+                            <div class="col-xs-6"><label>Purchased On:</label></div>
+                            <div class="col-xs-6">1/1/2020</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6"><label>Quantity:</label></div>
+                            <div class="col-xs-6">2</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6"><label>Activation Code:</label></div>
+                            <div class="col-xs-6">
+                                <select>
+                                    <option value="mercedes">e2290-124-ggot-002</option>
+                                    <option value="audi">esaf0-724-hjot-076</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+            @*}*@
         </div>
-    </div>
+     </div>
 </div>
