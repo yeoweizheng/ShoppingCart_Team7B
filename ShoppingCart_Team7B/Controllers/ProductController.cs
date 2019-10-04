@@ -23,5 +23,10 @@ namespace ShoppingCart_Team7B.Controllers
 
             return View();
         }
+
+        public ActionResult Checkout()
+        {
+            return RedirectToAction("ViewPurchases", "Purchases");
+        }
     }
 }

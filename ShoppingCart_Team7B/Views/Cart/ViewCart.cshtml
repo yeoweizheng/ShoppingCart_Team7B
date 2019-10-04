@@ -20,11 +20,8 @@
             </ul>
         </div>
     </nav>
-<div class="panel panel-default">
-    <!--<div class="panel-heading text-center">
-        <h3>View Cart</h3>
-    </div>-->
-    <div class="panel-body">
+    <div class="panel panel-default">
+        <div class="panel-body">
             <div class="row">
                 <div class="col-xs-3"></div>
                 <div class="col-xs-6">
@@ -51,7 +48,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6"><label>Quantity:</label></div>
-                                    <div class="col-xs-6">@cartGroup.Quantity</div>
+                                    <div class="col-xs-6">
+                                        <input type="number" step="1" value="@cartGroup.Quantity" min="0" style="width: 4em;" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +60,6 @@
                     <h4 style="font-weight: bold;">Total: $@totalSum.ToString("0.00")</h4>
                 </div>
             </div>
+        </div>
     </div>
-</div>
 </div>
