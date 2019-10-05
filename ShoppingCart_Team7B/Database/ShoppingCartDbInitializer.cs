@@ -11,14 +11,12 @@ namespace ShoppingCart_Team7B.Database
     {
         protected override void Seed(ShoppingCartDbContext context)
         {
-            Product product1 = new Product(".NET Charts", 99, "Brings powerful charting capabilities to your .NET applications.");
-            Product product2 = new Product(".NET PayPal", 69, "Integrate your .NET apps with PayPal the easy way!");
-            Product product3 = new Product(".NET ML", 299, "Supercharged .NET machine learning libraries.");
-            Product product4 = new Product(".NET Analytics", 299, "Performs data mining and analytics easily in .NET.");
-            context.Product.Add(product1);
-            context.Product.Add(product2);
-            context.Product.Add(product3);
-            context.Product.Add(product4);
+            context.Product.Add(new Product(".NET Charts", 99, "Brings powerful charting capabilities to your .NET applications."));
+            context.Product.Add(new Product(".NET PayPal", 69, "Integrate your .NET apps with PayPal the easy way!"));
+            context.Product.Add(new Product(".NET ML", 299, "Supercharged .NET machine learning libraries."));
+            context.Product.Add(new Product(".NET Analytics", 299, "Performs data mining and analytics easily in .NET."));
+            context.Product.Add(new Product(".NET Logger", 49, "Logs and aggregates events easily in your .NET apps."));
+            context.Product.Add(new Product(".NET Numerics", 199, "Powerful numerical methods for your .NET simulations."));
             base.Seed(context);
         }
     }
