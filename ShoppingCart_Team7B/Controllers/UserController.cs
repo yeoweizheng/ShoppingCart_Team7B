@@ -50,6 +50,21 @@ namespace ShoppingCart_Team7B.Controllers
             }
             return RedirectToAction("Login");
         }
+        public ActionResult CreateAccount(string username, string password)
+        {
+            if(HttpContext.Request.HttpMethod == "POST")
+            {
+                var db = new ShoppingCartDbContext();
+                User user = new User(username, password);
+                db.User.Add(user);
+                Session session = new Session(user);
+                Response.Cookies["ShoppingCart_Team7B"]["sessionId"] = session.SessionId;
+                db.Session.Add(session);
+                db.SaveChanges();
+                return RedirectToAction("ListProducts", "Product");
+            }
+            return View();
+        }
         [NonAction]
         public static User GetUserFromCookie(HttpCookie cookie)
         {
