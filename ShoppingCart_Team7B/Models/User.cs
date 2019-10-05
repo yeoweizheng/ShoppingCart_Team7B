@@ -12,6 +12,7 @@ namespace ShoppingCart_Team7B.Models
         {
             this.Username = username;
             this.Password = password;
+            this.Cart= new Cart();
             this.Purchases = new List<Purchase>();
         }
         public int UserId { get; set; }

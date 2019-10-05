@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShoppingCart_Team7B;
 using ShoppingCart_Team7B.Models;
 using ShoppingCart_Team7B.Database;
 using System.Data.Entity;
@@ -56,6 +57,26 @@ namespace ShoppingCart_Team7B.Controllers
             db.CartGroup.Remove(cartGroup);
             db.SaveChanges();
             return new HttpStatusCodeResult(200);
+        }
+        public ActionResult Checkout()
+        {
+            var db = new ShoppingCartDbContext();
+            User userAuth = UserController.GetUserFromCookie(Request.Cookies["ShoppingCart_Team7B"]);
+            if (userAuth == null) return RedirectToAction("Login", "User");
+
+            User user = db.User.Where(x => x.UserId == userAuth.UserId).FirstOrDefault();
+            Purchase purchase = new Purchase();
+            foreach(var cartGroup in user.Cart.CartGroups)
+            {
+                purchase.PurchaseGroups.Add(new PurchaseGroup(cartGroup.Quantity, cartGroup.Product));
+            }
+            user.Purchases.Add(purchase);
+            foreach(var cartGroup in user.Cart.CartGroups.ToList())
+            {
+                db.CartGroup.Remove(cartGroup);
+            }
+            db.SaveChanges();
+            return RedirectToAction("ViewPurchases", "Purchases");
         }
     }
 }

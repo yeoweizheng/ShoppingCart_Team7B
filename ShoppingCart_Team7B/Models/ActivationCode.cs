@@ -13,7 +13,7 @@ namespace ShoppingCart_Team7B.Models
         }
         public int ActivationCodeId { get; set; }
         public string ActivationNumber { get; set; }
-        public string PurchaseGroupId { get; set; }
+        public int PurchaseGroupId { get; set; }
         public virtual PurchaseGroup PurchaseGroup { get; set; }
     }
 }

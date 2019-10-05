@@ -16,13 +16,6 @@ namespace ShoppingCart_Team7B.Database
             Product product2 = new Product(".NET PayPal", 69, "Integrate your .NET apps with PayPal the easy way!");
             Product product3 = new Product(".NET ML", 299, "Supercharged .NET machine learning libraries.");
             Product product4 = new Product(".NET Analytics", 299, "Performs data mining and analytics easily in .NET.");
-            user1.Cart = new Cart();
-            user1.Cart.CartGroups.Add(new CartGroup(2, product1));
-
-            Purchase purchase = new Purchase();
-            purchase.PurchaseGroups.Add(new PurchaseGroup(2, product2));
-            user1.Purchases.Add(purchase);
-
             context.Product.Add(product1);
             context.Product.Add(product2);
             context.Product.Add(product3);

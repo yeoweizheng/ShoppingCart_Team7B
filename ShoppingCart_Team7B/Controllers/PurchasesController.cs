@@ -14,10 +14,12 @@ namespace ShoppingCart_Team7B.Controllers
         // GET: Purchases
         public ActionResult ViewPurchases()
         {
-            var db = new ShoppingCartDbContext();
-            User user = db.User.Where(x => x.Username == "admin").FirstOrDefault();
+            User user = UserController.GetUserFromCookie(Request.Cookies["ShoppingCart_Team7B"]);
+            if (user == null) return RedirectToAction("Login", "User");
             ViewData["user"] = user;
-            ViewData["purchase"] = user.Purchases;
+            List<Purchase> purchases = (List<Purchase>) user.Purchases.ToList();
+            purchases.Sort();
+            ViewData["purchases"] = purchases;
             return View();
         }
     }
