@@ -9,6 +9,8 @@ namespace ShoppingCart_Team7B.Models
 {
     public class CreateAccount
     {
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; }
         [Required(ErrorMessage = "Username is required")]
         [Remote("IsNewUser", "User", HttpMethod="POST", ErrorMessage = "Username already taken")]
         public string Username { get; set; }

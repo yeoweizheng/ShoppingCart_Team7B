@@ -11,7 +11,6 @@ namespace ShoppingCart_Team7B.Database
     {
         protected override void Seed(ShoppingCartDbContext context)
         {
-            User user1 = new User("admin", "admin");
             Product product1 = new Product(".NET Charts", 99, "Brings powerful charting capabilities to your .NET applications.");
             Product product2 = new Product(".NET PayPal", 69, "Integrate your .NET apps with PayPal the easy way!");
             Product product3 = new Product(".NET ML", 299, "Supercharged .NET machine learning libraries.");
@@ -20,7 +19,6 @@ namespace ShoppingCart_Team7B.Database
             context.Product.Add(product2);
             context.Product.Add(product3);
             context.Product.Add(product4);
-            context.User.Add(user1);
             base.Seed(context);
         }
     }
