@@ -14,15 +14,31 @@ namespace ShoppingCart_Team7B.Controllers
 {
     public class ProductController : Controller
     {
-        public ActionResult ListProducts()
+        public ActionResult ListProducts(string searchStr)
         {
             User user = UserController.GetUserFromCookie(Request.Cookies["ShoppingCart_Team7B"]);
             if (user == null) return RedirectToAction("Login", "User");
             ViewData["user"] = user;
-            
             var db = new ShoppingCartDbContext();
             var productList = db.Product.ToList();
-            ViewData["productList"] = productList;      
+            if(searchStr == null || searchStr == "")
+            {
+                ViewData["productList"] = productList;
+            }
+            else
+            {
+                var filteredProductList = new List<Product>();
+                searchStr = searchStr.ToLower();
+                foreach(var product in productList)
+                {
+                    if(product.ProductName.ToLower().Contains(searchStr) || product.Description.ToLower().Contains(searchStr))
+                    {
+                        filteredProductList.Add(product);
+                    }
+                }
+                ViewData["productList"] = filteredProductList;
+                ViewData["searchStr"] = searchStr;
+            }
             return View(); 
         }
 

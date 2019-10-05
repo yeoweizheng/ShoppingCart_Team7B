@@ -65,6 +65,16 @@ namespace ShoppingCart_Team7B.Controllers
             }
             return View();
         }
+        public ActionResult IsNewUser(string username)
+        {
+            var db = new ShoppingCartDbContext();
+            User user = db.User.Where(x => x.Username == username).FirstOrDefault();
+            if(user == null)
+            {
+                return Json(true);
+            }
+            return Json(false);
+        }
         [NonAction]
         public static User GetUserFromCookie(HttpCookie cookie)
         {
