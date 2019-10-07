@@ -13,10 +13,6 @@ namespace ShoppingCart_Team7B.Controllers
     public class UserController : Controller
     {
         // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult Login(string username, string password)
         {
             if (HttpContext.Request.HttpMethod == "POST")
